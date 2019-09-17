@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Flat, Complaint
+from .models import Flat, Complaint, Owner
 
 
 @admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
-    search_fields = ['town', 'address', 'owner']
+    search_fields = ['town', 'address', 'owner_1']
     readonly_fields = ['created_at']
     list_display = ['owners_phonenumber', 'owner_phone_pure', 'address', 'price', 'new_building', 'construction_year', 'town']
     list_editable = ['new_building']
@@ -15,3 +15,8 @@ class FlatAdmin(admin.ModelAdmin):
 @admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
     raw_id_fields = ['user', 'flat']
+
+
+@admin.register(Owner)
+class OwnerAdmin(admin.ModelAdmin):
+    raw_id_fields = ['flats']
