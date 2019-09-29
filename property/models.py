@@ -5,7 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
-    owner_1 = models.CharField("ФИО владельца", max_length=200)
+    owner_1 = models.CharField("ФИО владельца", max_length=200, db_index=True)
     owner_phone_pure = PhoneNumberField("Нормализованный номер владельца", blank=True, db_index=True)
     owners_phonenumber = models.CharField("Номер владельца", max_length=20, db_index=True)
     new_building = models.NullBooleanField('Новостройка', db_index=True, default=None)
