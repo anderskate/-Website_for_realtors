@@ -15,8 +15,8 @@ def transfer_data_to_owner(apps, schema_editor):
         number = phonenumbers.parse(flat.owners_phonenumber, 'RU')
 
         if phonenumbers.is_valid_number(number):
-            formating_number = phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.E164)
-            phone_pure = formating_number
+            formatted_number = phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.E164)
+            phone_pure = formatted_number
         else:
             phone_pure = ''
 
