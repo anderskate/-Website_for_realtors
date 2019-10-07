@@ -8,8 +8,8 @@ def associate_flats_with_owners(apps, schema_editor):
     Owner = apps.get_model('property', 'Owner')
 
     for owner in Owner.objects.all():
-    	new_flats = Flat.objects.filter(owner_1=owner.full_name)
-    	owner.flats.set(new_flats)
+        new_flats = Flat.objects.filter(owner_1=owner.full_name)
+        owner.flats.set(new_flats)
 
 
 class Migration(migrations.Migration):

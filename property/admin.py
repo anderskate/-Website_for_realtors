@@ -4,9 +4,9 @@ from .models import Flat, Complaint, Owner
 
 @admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
-    search_fields = ['town', 'address', 'owner_1']
+    search_fields = ['town', 'address']
     readonly_fields = ['created_at']
-    list_display = ['owners_phonenumber', 'owner_phone_pure', 'address', 'price', 'new_building', 'construction_year', 'town']
+    list_display = ['owner', 'address', 'price', 'new_building', 'construction_year', 'town']
     list_editable = ['new_building']
     list_filter = ['new_building', 'rooms_number', 'has_balcony']
     raw_id_fields = ['liked_by']

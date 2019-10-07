@@ -5,9 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
-    owner_1 = models.CharField("ФИО владельца", max_length=200, db_index=True)
-    owner_phone_pure = PhoneNumberField("Нормализованный номер владельца", blank=True, db_index=True)
-    owners_phonenumber = models.CharField("Номер владельца", max_length=20, db_index=True)
+    owner = models.ForeignKey('Owner', verbose_name='Владелец', on_delete=models.CASCADE, null=True)
     new_building = models.NullBooleanField('Новостройка', db_index=True, default=None)
     created_at = models.DateTimeField("Когда создано объявление", default=timezone.now, db_index=True)
     
@@ -41,7 +39,13 @@ class Owner(models.Model):
     full_name = models.CharField("ФИО владельца", max_length=200, db_index=True)
     phonenumber = models.CharField("Номер владельца", max_length=20, db_index=True)
     phone_pure = PhoneNumberField("Нормализованный номер владельца", blank=True, db_index=True)
-    flats = models.ManyToManyField(Flat, verbose_name="Квартиры в собственности", blank=True, db_index=True)
+    flats = models.ManyToManyField(
+        Flat, 
+        verbose_name="Квартиры в собственности", 
+        related_name='owners_flats', 
+        blank=True, 
+        db_index=True
+    )
 
     def __str__(self):
         return f"Владелец: {self.full_name}"
