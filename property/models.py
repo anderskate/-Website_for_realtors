@@ -5,7 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
-    owner = models.ForeignKey('Owner', verbose_name='Владелец', on_delete=models.CASCADE, null=True)
+    owner = models.ForeignKey('Owner', verbose_name='Владелец', on_delete=models.CASCADE, blank=True, null=True)
     new_building = models.NullBooleanField('Новостройка', db_index=True, default=None)
     created_at = models.DateTimeField("Когда создано объявление", default=timezone.now, db_index=True)
     
